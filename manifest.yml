@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kasa-controller
+spec:
+  selector:
+    matchLabels:
+      app: kasa-controller
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: kasa-controller
+    spec:
+      containers:
+      - name: kasa-controller
+        image: bgalhardo/kasa-controller:latest
+        env:
+        - name: UPDATE_PERIOD
+          value: "5"
+        - name: DISCOVERY_PERIOD
+          value: "30"
+        - name: PORT
+          value: "8001"
+        imagePullPolicy: Always
+      dnsPolicy: ClusterFirstWithHostNet
+      hostNetwork: true
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kasa-controller
+spec:
+  selector:
+    app: kasa-controller
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 8001
+  type: ClusterIP
