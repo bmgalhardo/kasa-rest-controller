@@ -44,5 +44,5 @@ docker-compose up -d
 
 with kubernetes
 ```commandline
-kubectl apply -f https://raw.githubusercontent.com/bmgalhardo/kasa-controller/main/manifest.yml -n <namespace>
+kubectl apply -f https://raw.githubusercontent.com/bmgalhardo/kasa-rest-controller/main/manifest.yml -n <namespace>
 ```
