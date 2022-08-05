@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: kasa-controller
-        image: bgalhardo/kasa-controller:latest
+        image: bgalhardo/kasa-rest-controller:latest
         env:
         - name: UPDATE_PERIOD
           value: "5"
